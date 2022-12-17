@@ -11,9 +11,13 @@ def ok(n):
     return isprime(n) and all(not isprime(k) for k in h1(n) if k!=n)
 
 # Calculate more Delicate Primes
+with open("delicate-primes.txt", "r") as f:
+    last_prime = int(f.readlines()[-1].strip())
+    f.close()
+
 with open("delicate-primes.txt", "a") as f:
-    print(10**32)
-    for k in range(5455261033+1, 10**32):
+    print(f"From: {last_prime} to {10**32}")
+    for k in range(last_prime+1, 10**32):
         if ok(k):
             f.write(str(k)+"\n")
             print(k)
